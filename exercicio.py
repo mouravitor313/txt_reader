@@ -8,7 +8,7 @@ def open_file(name):
     return students
 
 def add(name):
-    additional = sg.popup_get_text('Enter a student\'s name')
+    additional = sg.popup_get_text('Enter a student\'s name').replace(" ", "")
     with open(name, 'a') as archive:
         update = archive.write(f'\n{additional}')
     return update
@@ -33,8 +33,7 @@ def remove(name, chosen):
 def main():
     name = 'alunos.txt'
 
-    layout = [[sg.Text('TXT Reader by: Vítor Moura')],
-              [sg.Text(f"Your archive's content:\n{open_file(name)}\n ")],
+    layout = [[sg.Text('TXT Reader by: Vítor Moura and RafaelNST')],
               [sg.Button('Random choice'), sg.Button('Insert a name'), sg.Button('Remove a name'), sg.Button('View the content'), sg.Button('Exit')]]
 
     window = sg.Window('TXT Reader', layout)
@@ -47,7 +46,8 @@ def main():
             sg.popup(add(name))
         elif event == 'Remove a name':
             chosen = sg.popup_get_text('Who you want to remove? ')
-            remove(name,chosen)
+            if not chosen == None or chosen == "":
+                remove(name, chosen)
         elif event == 'View the content':
             sg.popup(open_file(name))
         elif event == 'Exit' or event == sg.WIN_CLOSED:
