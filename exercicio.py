@@ -2,8 +2,8 @@ import PySimpleGUI as sg
 from random import choice
 from os import system
 
-def get_name():
-    name = sg.popup_get_text('Enter the archive name: ').strip()
+def get_file_name():
+    name = sg.popup_get_text('Enter the archive name').strip()
     name += '.txt'
     return name
 
@@ -18,8 +18,7 @@ def add(name):
         update = archive.write(f'\n{additional}')
     return update
 
-def random(name):
-    lista = []
+def pick_random(name):
     with open(name) as archive:
         names = archive.readlines()
         return choice(names).strip()
@@ -28,6 +27,7 @@ def remove(name, chosen):
     with open(name) as archive:
         names = archive.readlines()
         names = [i.strip() for i in names if i.strip() != chosen]
+      
     with open(name, 'w') as archive:
         for i in names:
             if names.index(i) == len(names)-1:
@@ -36,10 +36,8 @@ def remove(name, chosen):
                 archive.write(i + '\n')
 
 def main():
-
-
     layout = [[sg.Text('TXT Reader by: Vítor Moura and RafaelNST')],
-              [sg.Button("Insert the archive's name"),
+              [sg.Button('Insert the archive\'s name'),
                sg.Button('Random choice'),
                sg.Button('Insert a name'),
                sg.Button('Remove a name'),
@@ -51,13 +49,13 @@ def main():
     while True:
         event, values = window.read()
         if event == "Insert the archive's name":
-            name = sg.popup(get_name())
+            name = sg.popup(get_file_name())
         elif event == 'Random choice':
-            sg.popup(random(name))
+            sg.popup(pick_random(name))
         elif event == 'Insert a name':
             sg.popup(add(name))
         elif event == 'Remove a name':
-            chosen = sg.popup_get_text('Who you want to remove? ')
+            chosen = sg.popup_get_text('Enter the name to remove')
             if not chosen == None or chosen == "":
                 remove(name, chosen)
         elif event == 'View the content':
