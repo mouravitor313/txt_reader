@@ -1,0 +1,8 @@
+Rafael
+
+Refatorar o código
+Tratar a adição de nomes com \n em casos de primeiro index
+
+Vitor
+
+Criar uma(s) classe(s) com estrutura(s) consistente(s)
