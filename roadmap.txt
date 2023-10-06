@@ -1,7 +1,6 @@
 Rafael
 
-Refatorar o código
-Tratar a adição de nomes com \n em casos de primeiro index
+Tratar entrada entrada do 'remove' e 'random' quando não há nada no arquivo
 
 Vitor
 
