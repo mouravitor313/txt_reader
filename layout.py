@@ -18,7 +18,7 @@ class Layout:
         window = sg.Window('TXT Reader', layout)
 
         while True:
-            event = window.read()
+            event, value = window.read()
             if event == 'Random choice':
                 sg.popup(Interators.pick_random(ARCH_NAME))
             elif event == 'Insert a name':
