@@ -25,15 +25,16 @@ def pick_random(name):
 
 def remove(name, chosen):
     with open(name) as archive:
-        names = archive.readlines()
-        names = [i.strip() for i in names if i.strip() != chosen]
+        rows = list()
+        rows = archive.readlines()
+        rows = [i.strip() for i in rows if i.strip() != chosen]
       
     with open(name, 'w') as archive:
-        for i in names:
-            if names.index(i) == len(names)-1:
-                archive.write(i)
+        for name in rows:
+            if rows.index(name) == len(rows)-1:
+                archive.write(name)
             else:
-                archive.write(i + '\n')
+                archive.write(name + '\n')
 
 def main():
     layout = [[sg.Text('TXT Reader by: Vítor Moura and RafaelNST')],
